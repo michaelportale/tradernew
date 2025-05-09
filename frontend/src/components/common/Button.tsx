@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   // Base classes
   const baseClasses = 'inline-flex items-center justify-center rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2';
-  
+
   // Variant classes
   const variantClasses = {
     primary: 'bg-indigo-600 hover:bg-indigo-700 text-white focus:ring-indigo-500',
@@ -29,23 +29,23 @@ const Button: React.FC<ButtonProps> = ({
     warning: 'bg-yellow-500 hover:bg-yellow-600 text-white focus:ring-yellow-500',
     info: 'bg-blue-500 hover:bg-blue-600 text-white focus:ring-blue-500',
   };
-  
+
   // Size classes
   const sizeClasses = {
     sm: 'px-2.5 py-1.5 text-xs',
     md: 'px-4 py-2 text-sm',
     lg: 'px-6 py-3 text-base',
   };
-  
+
   // Width class
   const widthClass = fullWidth ? 'w-full' : '';
-  
+
   // Disabled class
   const disabledClass = disabled || isLoading ? 'opacity-60 cursor-not-allowed' : '';
-  
+
   // Combine all classes
   const buttonClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${widthClass} ${disabledClass} ${className}`;
-  
+
   return (
     <button className={buttonClasses} disabled={disabled || isLoading} {...props}>
       {isLoading ? (

@@ -20,26 +20,19 @@ var/
 .installed.cfg
 *.egg
 
-# Jupyter Notebook
-.ipynb_checkpoints
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
 
 # Virtual Environment
 venv/
 ENV/
-env/
-
-# Data files
-*.csv
-*.pkl
-*.h5
-*.parquet
-*.feather
-# Uncomment if you want to include data files
-# !data/*.csv
-
-# Model files
-# Uncomment if you want to include model files
-# !models/*.h5
+.venv/
+.virtualenv/
 
 # IDE
 .idea/
@@ -47,33 +40,48 @@ env/
 *.swp
 *.swo
 
-# OS specific
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
 # Logs
 logs/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Node
+# Dependency directories
 node_modules/
-npm-debug.log
-yarn-error.log
-yarn-debug.log
-.pnpm-debug.log
+jspm_packages/
+
+# Distribution directories
+dist/
+build/
+
+# Cache
+.cache/
+.pytest_cache/
+.eslintcache
+.parcel-cache/
+
+# Coverage
+.coverage
+htmlcov/
+coverage/
+
+# MacOS
+.DS_Store
 
 # Docker
 .docker/
 
 # Database
 *.sqlite3
+*.db
 
-# Distribution / packaging
-dist/
-build/
-*.egg-info/
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Alembic
+alembic/versions/*_auto_*.py

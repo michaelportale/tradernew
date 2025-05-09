@@ -20,7 +20,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white">
         <div className="p-4 flex items-center">
           <div className="p-3 rounded-full text-green-500 bg-green-100 mr-4">
@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white">
         <div className="p-4 flex items-center">
           <div className="p-3 rounded-full text-blue-500 bg-blue-100 mr-4">
@@ -56,7 +56,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white">
         <div className="p-4 flex items-center">
           <div className="p-3 rounded-full text-teal-500 bg-teal-100 mr-4">

@@ -161,7 +161,7 @@ from typing import Any, Dict, List, Optional, Union
 class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     PROJECT_NAME: str = "ML Trading System"
-    
+
     # BACKEND_CORS_ORIGINS is a comma-separated list of origins
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
 
@@ -195,11 +195,11 @@ class Settings(BaseSettings):
     # Redis
     REDIS_HOST: str
     REDIS_PORT: int
-    
+
     # Security
     SECRET_KEY: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8  # 8 days
-    
+
     # External APIs
     YAHOO_FINANCE_RATE_LIMIT: int = 2000  # Requests per hour
 
@@ -463,7 +463,7 @@ cat > frontend/tsconfig.json << 'EOT'
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    
+
     /* Path aliases */
     "baseUrl": ".",
     "paths": {
@@ -602,7 +602,7 @@ cat > frontend/src/index.css << 'EOT'
 @tailwind utilities;
 
 :root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -645,7 +645,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white">
         <div className="p-4 flex items-center">
           <div className="p-3 rounded-full text-green-500 bg-green-100 mr-4">
@@ -663,7 +663,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white">
         <div className="p-4 flex items-center">
           <div className="p-3 rounded-full text-blue-500 bg-blue-100 mr-4">
@@ -681,7 +681,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white">
         <div className="p-4 flex items-center">
           <div className="p-3 rounded-full text-teal-500 bg-teal-100 mr-4">
@@ -733,7 +733,7 @@ const DataExplorer: React.FC = () => {
             </button>
           </div>
         </div>
-        
+
         <div className="bg-gray-100 p-4 rounded-md mb-4">
           <p className="text-gray-500 text-sm italic">
             No data loaded. Please select a symbol and fetch data.
@@ -796,9 +796,9 @@ const Sidebar: React.FC = () => {
           <div className="flex-1">
             <ul className="pt-2 pb-4 space-y-1 text-sm">
               <li className="rounded-sm">
-                <NavLink 
-                  to="/" 
-                  className={({ isActive }) => 
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
                     `flex items-center p-2 space-x-3 rounded-md ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}`
                   }
                 >
@@ -809,9 +809,9 @@ const Sidebar: React.FC = () => {
                 </NavLink>
               </li>
               <li className="rounded-sm">
-                <NavLink 
-                  to="/data" 
-                  className={({ isActive }) => 
+                <NavLink
+                  to="/data"
+                  className={({ isActive }) =>
                     `flex items-center p-2 space-x-3 rounded-md ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}`
                   }
                 >
@@ -859,10 +859,10 @@ export function useApi<T>() {
     async (endpoint: string, options: AxiosRequestConfig = {}) => {
       try {
         setState({ data: null, error: null, loading: true });
-        
+
         const url = endpoint.startsWith('http') ? endpoint : `${API_URL}${endpoint}`;
         const response = await axios({ ...options, url });
-        
+
         setState({ data: response.data, error: null, loading: false });
         return response.data;
       } catch (error) {
@@ -900,12 +900,12 @@ api.interceptors.request.use(
   (config) => {
     // Get token from localStorage
     const token = localStorage.getItem('token');
-    
+
     // If token exists, add to headers
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
-    
+
     return config;
   },
   (error) => {
@@ -925,7 +925,7 @@ api.interceptors.response.use(
       localStorage.removeItem('token');
       window.location.href = '/login';
     }
-    
+
     return Promise.reject(error);
   }
 );
@@ -956,7 +956,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   // Base classes
   const baseClasses = 'inline-flex items-center justify-center rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2';
-  
+
   // Variant classes
   const variantClasses = {
     primary: 'bg-indigo-600 hover:bg-indigo-700 text-white focus:ring-indigo-500',
@@ -966,23 +966,23 @@ const Button: React.FC<ButtonProps> = ({
     warning: 'bg-yellow-500 hover:bg-yellow-600 text-white focus:ring-yellow-500',
     info: 'bg-blue-500 hover:bg-blue-600 text-white focus:ring-blue-500',
   };
-  
+
   // Size classes
   const sizeClasses = {
     sm: 'px-2.5 py-1.5 text-xs',
     md: 'px-4 py-2 text-sm',
     lg: 'px-6 py-3 text-base',
   };
-  
+
   // Width class
   const widthClass = fullWidth ? 'w-full' : '';
-  
+
   // Disabled class
   const disabledClass = disabled || isLoading ? 'opacity-60 cursor-not-allowed' : '';
-  
+
   // Combine all classes
   const buttonClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${widthClass} ${disabledClass} ${className}`;
-  
+
   return (
     <button className={buttonClasses} disabled={disabled || isLoading} {...props}>
       {isLoading ? (
@@ -1050,15 +1050,15 @@ interface PriceChartProps {
 
 const PriceChart: React.FC<PriceChartProps> = ({ data, height = 300 }) => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     if (!chartContainerRef.current || !data.length) return;
-    
+
     const chartContainer = chartContainerRef.current;
-    
+
     // Clear any existing chart
     chartContainer.innerHTML = '';
-    
+
     // Create the chart
     const chart = createChart(chartContainer, {
       height,
@@ -1074,7 +1074,7 @@ const PriceChart: React.FC<PriceChartProps> = ({ data, height = 300 }) => {
         borderColor: '#d1d5db',
       },
     });
-    
+
     // Add the candlestick series
     const candlestickSeries = chart.addCandlestickSeries({
       upColor: '#4CAF50',
@@ -1083,27 +1083,27 @@ const PriceChart: React.FC<PriceChartProps> = ({ data, height = 300 }) => {
       wickUpColor: '#4CAF50',
       wickDownColor: '#FF5252',
     });
-    
+
     // Set the data
     candlestickSeries.setData(data);
-    
+
     // Fit content to container
     chart.timeScale().fitContent();
-    
+
     // Handle resizing
     const handleResize = () => {
       chart.applyOptions({ width: chartContainer.clientWidth });
     };
-    
+
     window.addEventListener('resize', handleResize);
-    
+
     // Cleanup on unmount
     return () => {
       window.removeEventListener('resize', handleResize);
       chart.remove();
     };
   }, [data, height]);
-  
+
   return <div ref={chartContainerRef} className="w-full"></div>;
 };
 
@@ -1138,9 +1138,9 @@ CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;
 
 -- Create hypertable function for easier table creation
 CREATE OR REPLACE FUNCTION create_market_data_hypertable(
-  schema_name TEXT, 
+  schema_name TEXT,
   table_name TEXT
-) 
+)
 RETURNS VOID AS $
 BEGIN
   EXECUTE format('SELECT create_hypertable(%L, %L, chunk_time_interval => interval %L)',
@@ -1733,7 +1733,7 @@ echo
 echo "============================================="
 echo "ML Trading System structure created successfully!"
 echo "============================================="
-echo 
+echo
 echo "To start development:"
 echo "1. Copy .env.example to .env and update the values"
 echo "   cp .env.example .env"

@@ -12,9 +12,9 @@ const Sidebar: React.FC = () => {
           <div className="flex-1">
             <ul className="pt-2 pb-4 space-y-1 text-sm">
               <li className="rounded-sm">
-                <NavLink 
-                  to="/" 
-                  className={({ isActive }) => 
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
                     `flex items-center p-2 space-x-3 rounded-md ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}`
                   }
                 >
@@ -25,9 +25,9 @@ const Sidebar: React.FC = () => {
                 </NavLink>
               </li>
               <li className="rounded-sm">
-                <NavLink 
-                  to="/data" 
-                  className={({ isActive }) => 
+                <NavLink
+                  to="/data"
+                  className={({ isActive }) =>
                     `flex items-center p-2 space-x-3 rounded-md ${isActive ? 'bg-gray-700' : 'hover:bg-gray-700'}`
                   }
                 >

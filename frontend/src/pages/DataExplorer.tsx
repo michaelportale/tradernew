@@ -24,7 +24,7 @@ const DataExplorer: React.FC = () => {
             </button>
           </div>
         </div>
-        
+
         <div className="bg-gray-100 p-4 rounded-md mb-4">
           <p className="text-gray-500 text-sm italic">
             No data loaded. Please select a symbol and fetch data.

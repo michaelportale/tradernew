@@ -49,18 +49,66 @@ services:
       redis:
         condition: service_healthy
 
-  celery_worker:
+  # Celery worker for model tasks
+  celery_model_worker:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    command: celery -A app.tasks.worker worker --loglevel=info
+    command: python celery_worker.py --queue model_tasks --concurrency 2
+    volumes:
+      - ./backend:/app
+      - ./models:/app/models
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - postgres
+
+  # Celery worker for data tasks  
+  celery_data_worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: python celery_worker.py --queue data_tasks --concurrency 2
     volumes:
       - ./backend:/app
     env_file:
       - .env
     depends_on:
-      - backend
       - redis
+      - postgres
+
+  # Celery Beat for scheduled tasks
+  celery_beat:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: celery -A app.tasks.worker beat --loglevel=info
+    volumes:
+      - ./backend:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - celery_model_worker
+      - celery_data_worker
+
+  # Flower for monitoring Celery tasks
+  flower:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5555:5555"
+    command: celery -A app.tasks.worker flower --port=5555
+    volumes:
+      - ./backend:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - celery_model_worker
+      - celery_data_worker
 
   frontend:
     build:

@@ -21,10 +21,10 @@ export function useApi<T>() {
     async (endpoint: string, options: AxiosRequestConfig = {}) => {
       try {
         setState({ data: null, error: null, loading: true });
-        
+
         const url = endpoint.startsWith('http') ? endpoint : `${API_URL}${endpoint}`;
         const response = await axios({ ...options, url });
-        
+
         setState({ data: response.data, error: null, loading: false });
         return response.data;
       } catch (error) {

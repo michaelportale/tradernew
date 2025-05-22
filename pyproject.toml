@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "mvp-trader"
+version = "0.1.0"
+description = "MVP ML Trading System"
+authors = ["You <you@example.com>"]
+packages = [{ include = "app" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.104"
+pydantic = {extras = ["dotenv"], version = "^2.11.4"}
+loguru = "^0.7.3"
+uvicorn = "^0.34.2"
+pydantic-settings = "^2.9.1"
+asyncpg = "^0.30.0"
+sqlalchemy = "^2.0.41"
+alembic = "^1.15.2"
+psycopg = {extras = ["binary"], version = "^3.2.9"}
+greenlet = "^3.2.2"
+psycopg2-binary = "^2.9.10"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

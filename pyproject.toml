@@ -3,7 +3,7 @@ name = "mvp-trader"
 version = "0.1.0"
 description = "MVP ML Trading System"
 authors = ["You <you@example.com>"]
-packages = [{ include = "app" }]
+packages = [{ include = "backend/app" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -18,6 +18,8 @@ alembic = "^1.15.2"
 psycopg = {extras = ["binary"], version = "^3.2.9"}
 greenlet = "^3.2.2"
 psycopg2-binary = "^2.9.10"
+celery = "^5.3.6"
+redis = "^5.0.1"
 
 [build-system]
 requires = ["poetry-core"]

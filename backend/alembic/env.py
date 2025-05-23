@@ -9,7 +9,7 @@ from alembic import context
 from sqlalchemy import create_engine  # <-- use sync engine for migrations
 
 from app.core.config import settings
-from app.db.base import Base
+from app.db.base_class_registry import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -63,6 +63,9 @@ def run_migrations_online() -> None:
     and associate a connection with the context.
 
     """
+    # Use a hardcoded local database URL for migrations
+    # Use SQLite for offline migrations to avoid database connection issues
+    from app.core.config import settings
     connectable = create_engine(settings.database_url.replace("+asyncpg", ""), poolclass=None)
 
     with connectable.connect() as connection:

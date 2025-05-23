@@ -5,10 +5,13 @@ class MarketData(Base):
     __tablename__ = "market_data"
 
     id = Column(Integer, primary_key=True, index=True)
-    timestamp = Column(DateTime, index=True)
-    symbol = Column(String, index=True)
-    open = Column(Float)
-    high = Column(Float)
-    low = Column(Float)
-    close = Column(Float)
-    volume = Column(Float)
+    timestamp = Column(DateTime, index=True, nullable=False)
+    symbol = Column(String, index=True, nullable=False)
+    open = Column(Float, nullable=False)
+    high = Column(Float, nullable=False)
+    low = Column(Float, nullable=False)
+    close = Column(Float, nullable=False)
+    volume = Column(Float, nullable=False)
+
+    def __repr__(self):
+        return f"<MarketData(symbol={self.symbol}, timestamp={self.timestamp})>"
